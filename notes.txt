@@ -1,0 +1,57 @@
+Goals
+-----
+
+- Learn about web-scraping and creating datasets. hows and whys
+- Learn more about python in general
+- Use Bs4 and Requests to do this
+- Build some kind of small CLI to look at dataset
+- Get the data into some flavor of SQL database
+- Next time create this file BEFORE starting the project >.<
+
+Tech
+----
+
+- Python
+  - Beautiful Soup 4
+  - Requests
+
+Notes/Thoughts/Plans
+--------------------
+
++ script
+  - Club-mst3k.com will be my source
+  - would be cooler if it was putting info into sql database instead of JSON although that might not really be necessary
+  - try a second iteration with oop in mind
+    - could perhaps make something less coupled to this project for use in the future
+  - scrape every episode title of MST3k for all original 10 seasons along with associated short films and all user submitted 'best riffs' from the site
+    - make a single request to gather all the links on the site
+    - find the links for each episode
+      - for each of these links make a request and gather the 'best riffs' from the comment section
+
++ CLI
+  - would be cooler if it just let you make sql queries
+  - made it super simple, it exists just to test the collected data, basically
+  - when asked for a season/episode combo it returns the episode title, whether or not there is a short, if so which one, and also print a random riff from that episode.
+  - handles negative numbers
+  - handles persons asking for non-existing season/episode combinations
+  - is a first iteration and could use a few more.
+
++ API
+  - Maybe in the future write an API so that people can request a random quote from a specific season/episode of MST3K
+  - could make a game where users can attempt to guess what movie a quote is from
+    - lots of potential problems here but could be really fun mst community game.
+
+
+new oop ideas
+--------------
+
+-generic scraper class
+  - scrape home page class
+    -all seasons
+    -all movie titles
+    -all associated shorts if any
+  - scrape each movie page class
+    -qoutes
+
+-'bot' class to manage scrapers and store info
+
