@@ -2,7 +2,7 @@ import json
 import helpers as h
 
 class Club_mst3k_info_bot:
-    """App that controls scrapers and writes data to file"""
+    """Class that controls scrapers and writes data to file"""
 
     def __init__(self, hp, mp):
         self.hp_scraper = hp
@@ -69,6 +69,8 @@ class Club_mst3k_info_bot:
         self.add_quotes_to_info()
 
     def dump_json(self):
-        with open('mst3k.json', 'w') as db:
+        """Write the info to file as JSON"""
+
+        with open('mst3k.json', 'w+') as db:
             json.dump(self.MST3K_info, db)
             print('\nData successfully written to mst3k.json')

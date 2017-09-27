@@ -30,11 +30,9 @@ Notes/Thoughts/Plans
 
 + CLI
   - would be cooler if it just let you make sql queries
-  - made it super simple, it exists just to test the collected data, basically
-  - when asked for a season/episode combo it returns the episode title, whether or not there is a short, if so which one, and also print a random riff from that episode.
-  - handles negative numbers
-  - handles persons asking for non-existing season/episode combinations
-  - is a first iteration and could use a few more.
+  - made it super simple, it exists just to test the collected data
+  - when asked for a season/episode combo it returns the episode title, whether or not there is a short, if so which one(s), and also prints a random riff from that episode.
+  - handles common errors
 
 + API
   - Maybe in the future write an API so that people can request a random quote from a specific season/episode of MST3K

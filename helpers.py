@@ -2,6 +2,7 @@
 Helper function for formatting scraped data.
 """
 
+
 def extract_title_and_episode_number(title):
     """Take title string and return title and episode number separately"""
 
