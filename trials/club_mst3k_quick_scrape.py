@@ -116,5 +116,5 @@ def print_info(info, border):
           .format(add_borders(border, random_title), '!' * 32, '!' * 32))
 
 
-if __name__ == '__main__':2
+if __name__ == '__main__':
     print_info(get_info(), '~')

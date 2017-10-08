@@ -1,7 +1,6 @@
 """
-
 Quick and simple CLI application to interact with the data collected by collect_mst3k_data.py
-
+You must first run app.py to create you dataset in order to use this CLI tool.
 """
 
 
@@ -89,7 +88,7 @@ def get_info():
 def print_results(info):
     try:
       print('\nMST3K Season: {} Episode: {} \n'
-            'Title: {}\nShort: {}\nRandom Riff: {}'
+            'Title: {}\nShort: {}\nRandom Riff: "{}"'
             .format(info[0] if info[0] != 0 else 'KTMA',
                     info[2],
                     MST3K[info[1]][info[3]]['title'],

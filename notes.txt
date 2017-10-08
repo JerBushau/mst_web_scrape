@@ -5,8 +5,15 @@ Goals
 - Learn more about python in general
 - Use Bs4 and Requests to do this
 - Build some kind of small CLI to look at dataset
-- Get the data into some flavor of SQL database
 - Next time create this file BEFORE starting the project >.<
+
+Todo
+----
+
+- Get the data into some flavor of SQL database
+- Write unit tests!
+  - use coverage and unittests modules
+- Learn best practices for dir structure of python projects
 
 Tech
 ----
@@ -40,8 +47,8 @@ Notes/Thoughts/Plans
     - lots of potential problems here but could be really fun mst community game.
 
 
-new oop ideas
---------------
+oop ideas
+---------
 
 -generic scraper class
   - scrape home page class
@@ -53,3 +60,4 @@ new oop ideas
 
 -'bot' class to manage scrapers and store info
 
+- processor object lol

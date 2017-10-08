@@ -4,6 +4,4 @@ from mst_bot import Club_mst3k_info_bot
 
 
 if __name__ == '__main__':
-  cmib = Club_mst3k_info_bot(Homepage_scraper(), Movie_page_scraper)
-  cmib.populate_info()
-  cmib.dump_json()
+  cmib = Club_mst3k_info_bot(Homepage_scraper, Movie_page_scraper)

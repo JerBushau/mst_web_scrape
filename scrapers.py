@@ -7,6 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 import helpers as h
 
+
 class Scraper:
     """Generic Scraper"""
 

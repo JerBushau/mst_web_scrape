@@ -24,9 +24,3 @@ def determine_season(number):
         season = list(number)[0]
 
     return 'season_{}'.format(season)
-
-
-def clean_quotes(quotes):
-    """Get rid of whitespace and empty quotes"""
-
-    return [i.strip() for i in quotes if i != None]
