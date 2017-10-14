@@ -11,6 +11,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
+# not the best naming >.<
 class Catalog(dict):
     """dict type class where the data will be stored"""
 

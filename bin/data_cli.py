@@ -1,6 +1,6 @@
 """
 Quick and simple CLI application to interact with the data collected by collect_mst3k_data.py
-You must first run app.py to create you dataset in order to use this CLI tool.
+You must first run app.py to create you mst3k.json in order to use this CLI tool.
 """
 
 

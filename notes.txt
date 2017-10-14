@@ -61,3 +61,16 @@ oop ideas
 -'bot' class to manage scrapers and store info
 
 - processor object lol
+
+
+refactor
+--------
+
+scraper
+  -homepage info
+    -scrape table on homepage
+
+  loop thru links
+  -quotes from individual movie pages
+
+

@@ -7,10 +7,9 @@ class Club_mst3k_info_bot:
         Class that controls scrapers data processing and writing to file
     """
 
-    def __init__(self, hp, mp):
-        self.hp_scraper = hp()
-        self.mp_scraper = mp
-        self.MST3K_info = {}
+    def __init__(self, dp, hps, mps):
+        self.data_processor = dp(hps(), mps)
+
 
         for i in range(11):
             self.MST3K_info['season_{}'.format(i)] = {}
@@ -25,26 +24,19 @@ class Club_mst3k_info_bot:
         """
 
         # get the links to each episode from the homepage scrape
-        data = self.hp_scraper.soup.find_all('a')[22:]
+
+        data = self.hp_scraper.links
         for link in data:
             ep = link['href']
             ep_title, ep_number = h.extract_title_and_episode_number(link.string)
-
             if ep_number == 'Pilot':
                 pass
             # scrape the 'best riffs' from movie page
             ms = self.mp_scraper(ep)
             ep_season = h.determine_season(ep_number)
 
-            quotes = ms.soup.select('#quotes .body p')
+            quotes = ms.quotes
             quotes = [p.string for p in quotes]
-            quotes = self.clean_quotes(quotes)
-
-            for episode in self.MST3K_info[ep_season]:
-                if episode == str(ep_number):
-                    self.MST3K_info[ep_season][episode]['quotes'] = quotes
-                    print('Best riffs for {} episode {} have been added.'
-                          .format(ep_season, episode))
 
     def clean_quotes(self, quotes):
         """Get rid of whitespace and empty quotes"""

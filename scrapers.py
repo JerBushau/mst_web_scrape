@@ -3,9 +3,9 @@ Scraper objects that gather specific data.
 """
 
 
+import time
 import requests
 from bs4 import BeautifulSoup
-import helpers as h
 
 
 class Scraper:
@@ -13,49 +13,9 @@ class Scraper:
 
     def __init__(self, url='', target=''):
         self.url = url
-        self.res = res = requests.get(self.url)
-        self.soup = BeautifulSoup(res.content, 'html.parser')
+        self.res = requests.get(self.url)
+        self.soup = BeautifulSoup(self.res.content, 'html.parser')
         self.data = self.soup.select(target)
-
-
-class Homepage_scraper(Scraper):
-    """Club-mst3k homepage table scraper"""
-
-    def __init__(self):
-        super().__init__(url='http://www.club-mst3k.com', target='table tr')
-
-    def process_data(self):
-        """
-        Processes scraped data and returns a set of tuples containing movie
-        title, episode number and any associated shorts
-        """
-        result = []
-        for tr in self.data:
-            # Look through data starting at index 5
-            if self.data.index(tr) > 4:
-                # get text from a tag inside the tr
-                for link in tr.select('a'):
-                    title = link.string
-
-                    title, number = h.extract_title_and_episode_number(title)
-
-                # If there are any shorts associated and add them
-                if tr.select('.episode_short'):
-                    for short in tr.select('.episode_short'):
-                        for string in short.strings:
-                            short_title = string.replace('+', '').strip()
-
-                        info = (number, title, short_title)
-                        result.append(info)
-
-                # Otherwise leave shorts blank and add
-                else:
-                    info = (number, title, '')
-                    result.append(info)
-
-        #  Use set to remove any duplicates from data
-        self.processed_data = sorted(set(result))
-        print('Homepage data scraped and processed.')
 
 
 class Movie_page_scraper(Scraper):
@@ -64,3 +24,26 @@ class Movie_page_scraper(Scraper):
     def __init__(self, url):
         url = '{}{}'.format('http://www.club-mst3k.com', url)
         super().__init__(url, target='a')
+        self.quotes = self.soup.select('#quotes .body p')
+        print('{} quotes scraped.'.format(url.split('/')[-1]))
+
+
+class Mst_info_scraper(Scraper):
+    """Gathers details from homepage and quotes from each movie page"""
+
+    def __init__(self, data_processor):
+        super().__init__(url='http://www.club-mst3k.com', target='table tr')
+        self.dp = data_processor
+        self.mps = Movie_page_scraper
+        self.episode_links = self.soup.find_all('a')[22:]
+        print('Homepage data scraped.')
+        self.dp.process_homepage_data(self.data)
+        self.scrape_quotes()
+
+    def scrape_quotes(self):
+        for link in self.episode_links:
+            ep = link['href']
+            ep_title, ep_number = self.dp.extract_ep_num_from_title(link.string)
+            mps = self.mps(ep)
+            self.dp.process_quote_data(mps.quotes, ep_title, ep_number)
+            time.sleep(1)
