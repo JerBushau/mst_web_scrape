@@ -1,9 +1,9 @@
 Goals
 -----
 
-- Learn about web-scraping and creating datasets. hows and whys
+- Learn about web-scraping and creating datasets
 - Learn more about python in general
-- Use Bs4 and Requests to do this
+- Use Bs4 and Requests
 - Build some kind of small CLI to look at dataset
 - Next time create this file BEFORE starting the project >.<
 
@@ -13,12 +13,12 @@ Todo
 - Get the data into some flavor of SQL database
 - Write unit tests!
   - use coverage and unittests modules
-- Learn best practices for dir structure of python projects
+- Learn best practices for dir structure for python projects
 
 Tech
 ----
 
-- Python
+- Python 3
   - Beautiful Soup 4
   - Requests
 
@@ -52,25 +52,14 @@ oop ideas
 
 -generic scraper class
   - scrape home page class
-    -all seasons
-    -all movie titles
-    -all associated shorts if any
+    - all seasons
+    - all movie titles
+    - all associated shorts if any
   - scrape each movie page class
-    -qoutes
+    - qoutes
 
--'bot' class to manage scrapers and store info
+- processor class
+  - process data from homepage
+  - process quote data
 
-- processor object lol
-
-
-refactor
---------
-
-scraper
-  -homepage info
-    -scrape table on homepage
-
-  loop thru links
-  -quotes from individual movie pages
-
-
+-'bot' class to manage scrapers and process/write info
