@@ -5,6 +5,7 @@ from scrapers import Mst_info_scraper
 
 class Mst3k_bot:
     """Class to control data collection and processing"""
+
     def __init__(self):
         self.data = Data_processor()
         self.scraper = Mst_info_scraper(self.data)

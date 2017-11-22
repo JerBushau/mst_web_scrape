@@ -3,17 +3,23 @@ Class to process the data collected from the scrapers.
 """
 
 
+from collections import OrderedDict
+
+
 class Data_processor:
 
     def __init__(self):
-        self.mst3k_info = {}
+        self.mst3k_info = OrderedDict()
         for i in range(11):
-            self.mst3k_info['season_{}'.format(i)] = {}
+            self.mst3k_info['season_{}'.format(i)] = OrderedDict()
 
-    # not sure this is the appropriate place for these methods
+    # using static methods here to keep things logically grouped together
+    # static methods may be called on the class or on an instance
     @staticmethod
-    def extract_ep_num_from_title(title):
-        """Take title string and return title and episode number separately"""
+    def extract_ep_num_and_title(title):
+        """
+        Take title string and return title and episode number separately
+        """
 
         title = title.replace('-', '').strip().split()
         number = title[0]
@@ -40,14 +46,15 @@ class Data_processor:
 
     def process_homepage_data(self, data):
         """
-        Processes scraped homepage data and populates mst3k_info dict with movie
-        title, episode number and any associated shorts
+        Processes homepage data populating mst3k_info dict with
+        movie title, episode number and any associated shorts
         """
+
         for tr in data:
             if data.index(tr) > 4:
                 for link in tr.select('a'):
                     title = link.string
-                    title, number = self.extract_ep_num_from_title(title)
+                    title, number = self.extract_ep_num_and_title(title)
                 if tr.select('.episode_short'):
                     for short in tr.select('.episode_short'):
                         shorts = []
@@ -63,9 +70,9 @@ class Data_processor:
 
     def process_quote_data(self, quotes, ep_title, ep_number):
         """
-        Processes scraped quote data and adds each episodes quotes to mst3k_info dict
-        in the appropriate place.
+        Processes quote data adding each episodes quotes to mst3k_info dict
         """
+
         ep_season = self.determine_season(ep_number)
         quotes = [p.string for p in quotes]
         quotes = self.clean_quotes(quotes)

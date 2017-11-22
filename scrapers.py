@@ -41,9 +41,8 @@ class Mst_info_scraper(Scraper):
         self.scrape_quotes()
 
     def scrape_quotes(self):
-        for link in self.episode_links:
-            ep = link['href']
-            ep_title, ep_number = self.dp.extract_ep_num_from_title(link.string)
-            mps = self.mps(ep)
+        for ep in self.episode_links:
+            ep_title, ep_number = self.dp.extract_ep_num_and_title(ep.string)
+            mps = self.mps(ep['href'])
             self.dp.process_quote_data(mps.quotes, ep_title, ep_number)
             time.sleep(1)
